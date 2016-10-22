@@ -46,6 +46,7 @@ if (file_exists(DATA_PATH . '/do-install.txt')) {
 		$front_controller->run();
 	} catch (Exception $e) {
 		echo '### Fatal error! ###<br />', "\n";
+    //echo $e->getMessage();
 		Minz_Log::error($e->getMessage());
 		echo 'See logs files.';
 	}
