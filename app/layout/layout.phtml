@@ -42,6 +42,9 @@
 	} if (isset($this->rss_title)) {
 		$url_rss = $url_base;
 		$url_rss['a'] = 'rss';
+		if (FreshRSS_Context::$user_conf->since_hours_posts_per_rss) {
+			$url_rss['params']['hours'] = FreshRSS_Context::$user_conf->since_hours_posts_per_rss;
+		}
 ?>
 		<link rel="alternate" type="application/rss+xml" title="<?php echo $this->rss_title; ?>" href="<?php echo Minz_Url::display($url_rss); ?>" />
 <?php } if (FreshRSS_Context::$system_conf->allow_robots) { ?>
@@ -49,21 +52,6 @@
 <?php } else { ?>
 		<meta name="robots" content="noindex,nofollow" />
 <?php } ?>
-<!-- Piwik -->
-<script type="text/javascript">
-  var _paq = _paq || [];
-  _paq.push(['trackPageView']);
-  _paq.push(['enableLinkTracking']);
-  (function() {
-    var u="//sudo.li/piwik/";
-    _paq.push(['setTrackerUrl', u+'piwik.php']);
-    _paq.push(['setSiteId', 8]);
-    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
-    g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
-  })();
-</script>
-<noscript><p><img src="//sudo.li/piwik/piwik.php?idsite=8" style="border:0;" alt="" /></p></noscript>
-<!-- End Piwik Code -->
 	</head>
 	<body class="<?php echo Minz_Request::actionName(); ?>">
 <?php $this->partial('header'); ?>
